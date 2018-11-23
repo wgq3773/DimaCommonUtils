@@ -30,4 +30,18 @@
 		</dependency>
 	</dependencies>
 
+	<!-- 将生成jar包部署到nexus私服里面 -->
+	<distributionManagement>
+		<repository>
+			<id>Releases</id>
+			<name>Releases</name>
+			<url>http://47.107.142.11:8091/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>Snapshots</id>
+			<name>Snapshots</name>
+			<url>http://47.107.142.11:8091/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
 </project>
