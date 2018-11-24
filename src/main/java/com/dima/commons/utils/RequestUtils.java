@@ -1,10 +1,38 @@
 package com.dima.commons.utils;
 
 import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
 public class RequestUtils {
+
+	/**
+	 * <p>Title: getIpAddress</p>
+	 * <p>Description: 获取IP地址</p>
+	 * @param request
+	 * @return
+	 */
+	public static String getIpAddress(HttpServletRequest request) {
+		String ip = request.getHeader("x-forwarded-for");
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("WL-Proxy-Client-IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_CLIENT_IP");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getHeader("HTTP_X_FORWARDED_FOR");
+		}
+		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
+			ip = request.getRemoteAddr();
+		}
+		return ip;
+	}
 
 	/**
 	 * <p>
@@ -18,16 +46,15 @@ public class RequestUtils {
 	 * @return
 	 */
 	@SuppressWarnings("rawtypes")
-	public static String getRequestParamts(HttpServletRequest request) {
-		StringBuilder params = new StringBuilder("");
+	public static Map<String, String> getRequestParamts(HttpServletRequest request) {
+		Map<String, String> returnMap = new HashMap<>();
 		Enumeration e = request.getHeaderNames();
 		while (e.hasMoreElements()) {
 			String name = (String) e.nextElement();
 			String value = request.getHeader(name);
-			params.append(name).append("=").append(value);
-			params.append("|");
+			returnMap.put(name, value);
 		}
-		return params.toString();
+		return returnMap;
 	}
 
 	/**
