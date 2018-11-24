@@ -77,9 +77,13 @@ public class RequestUtils {
 	 * @return
 	 */
 	public static boolean isWechat(HttpServletRequest request) {
+		Boolean fromMobile = RequestUtils.isFromMobile(request);
+		if (!fromMobile) {// 不是来自手机
+			return false;
+		}
 		String ua = request.getHeader("User-Agent").toLowerCase();
 		if (ua.indexOf("micromessenger") > -1) {
-			return true;// 微信
+			return true;// 微信手机浏览器
 		}
 		return false;// 非微信手机浏览器
 	}
