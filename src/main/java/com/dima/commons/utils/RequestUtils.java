@@ -47,7 +47,7 @@ public class RequestUtils {
 	 */
 	@SuppressWarnings("rawtypes")
 	public static Map<String, String> getRequestParamts(HttpServletRequest request) {
-		Map<String, String> returnMap = new HashMap<>();
+		Map<String, String> returnMap = new HashMap<String, String>();
 		Enumeration e = request.getHeaderNames();
 		while (e.hasMoreElements()) {
 			String name = (String) e.nextElement();
