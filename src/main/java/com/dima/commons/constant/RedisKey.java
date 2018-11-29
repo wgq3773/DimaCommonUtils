@@ -1,6 +1,10 @@
 package com.dima.commons.constant;
 
 public class RedisKey {
+	
+	/****************redis Hash的key********************/
+	// 订单记录
+	public static final String ALL_ORDER_RECORD = "all_order_record";
 
 	/****************redis Hash的field********************/
 	// 用户访问次数
