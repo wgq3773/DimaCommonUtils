@@ -9,8 +9,8 @@ import java.util.Map;
 import org.apache.commons.configuration.ConfigurationException;
 import org.apache.commons.configuration.PropertiesConfiguration;
 import org.apache.commons.configuration.reloading.FileChangedReloadingStrategy;
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * 静态读取properties配置文件
@@ -18,7 +18,7 @@ import org.apache.commons.logging.LogFactory;
  */
 public class PropertiesUtils {
 	
-	private static Log log = LogFactory.getLog(PropertiesUtils.class);
+	private static Logger log = LoggerFactory.getLogger(PropertiesUtils.class);
 
 	private static Map<String, PropertiesConfiguration> configMap = new HashMap<String, PropertiesConfiguration>();
 

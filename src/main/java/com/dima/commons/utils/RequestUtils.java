@@ -10,12 +10,12 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class RequestUtils {
 	
-	private static Log log = LogFactory.getLog(RequestUtils.class);
+	private static Logger log = LoggerFactory.getLogger(RequestUtils.class);
 	
 	/**
 	 * 以key-value形式提取请求数据到可读写的map集合中
