@@ -18,6 +18,19 @@ public class RequestUtils {
 	private static Logger log = LoggerFactory.getLogger(RequestUtils.class);
 	
 	/**
+	 * 根据用户请求的IP地址和user-agent生成用户ID
+	 * @param request
+	 * @return
+	 */
+	public static String generateUserIdByIpUserAgent(HttpServletRequest request){
+		String ipAddress = RequestUtils.getIpAddress(request);
+		Map<String, String> requestParamts = RequestUtils.getRequestParamts(request);
+		String originalUserId = ipAddress + requestParamts.get("user-agent");
+		String userId = CommonUtils.signWithMD5(originalUserId);
+		return userId;
+	}
+	
+	/**
 	 * 以key-value形式提取请求数据到可读写的map集合中
 	 * <p>Title: reqMapToMap</p>
 	 * <p>Description: </p>
