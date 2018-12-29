@@ -1,6 +1,8 @@
 package com.dima.commons.learn.annotation;
 
+import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
+import java.lang.annotation.Inherited;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
@@ -13,6 +15,8 @@ import java.lang.annotation.Target;
  */
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
+@Documented
+@Inherited
 public @interface SelfDefineAnnotaion {
 	
 	public String[] value();//注解只有一个变量时 变量名必须为value
@@ -35,7 +39,7 @@ public @interface SelfDefineAnnotaion {
  * @Target(ElementType.ANNOTATION_TYPE)	//注解 
  * @Target(ElementType.PACKAGE) 		//包
  * 
- * @Document：说明该注解将被包含在javadoc中
+ * @Documented：说明该注解将被包含在javadoc中
  * 
  * @Inherited：说明子类可以继承父类中的该注解
  */
