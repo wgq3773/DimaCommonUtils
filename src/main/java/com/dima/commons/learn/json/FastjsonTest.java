@@ -30,19 +30,20 @@ import com.alibaba.fastjson.TypeReference;
  * @date 2018年12月7日 下午10:48:25
  */
 public class FastjsonTest {
+	
 	@Test
 	public void testJsonArray(){
 		JSONObject jsonObject1 = new JSONObject();
 		jsonObject1.put("aaa", "111");
 		jsonObject1.put("bbb", "222");
 		jsonObject1.put("ccc", "333");
-		System.out.println(jsonObject1);
-		JSONObject jsonObject2 = new JSONObject();//{"aaa":"111","ccc":"333","bbb":"222"}
+		System.out.println(jsonObject1);//{"aaa":"111","ccc":"333","bbb":"222"}
+		JSONObject jsonObject2 = new JSONObject();
 		jsonObject2.put("ddd", "444");
 		jsonObject2.put("eee", "555");
 		jsonObject2.put("fff", "666");
-		System.out.println(jsonObject2);
-		JSONArray jsonArray = new JSONArray();//{"eee":"555","ddd":"444","fff":"666"}
+		System.out.println(jsonObject2);//{"eee":"555","ddd":"444","fff":"666"}
+		JSONArray jsonArray = new JSONArray();
 		jsonArray.add(jsonObject1);
 		jsonArray.add(jsonObject2);
 		System.out.println(jsonArray);//[{"aaa":"111","ccc":"333","bbb":"222"},{"eee":"555","ddd":"444","fff":"666"}]
@@ -138,14 +139,14 @@ public class FastjsonTest {
 	 */
 	@Test
 	public void testJsonLib(){
-		String retStr = "{\"sign\":\"CMxlvSKI0hRgZqiZgKINMkf3i80GksxtHzLueWZA+cuwV/oAmnUMukxQfEhslBnk7kH5xJD3PdmBcNDicm96sMiErrVlmQdZMFLGGHVdFQhXUmDsMr/35PAoe+ddWWdq8TYlBLbTUC3xTJPQqsaP9av3uaGIvuh1wjXuO4M075M=\",\"ysepay_df_single_query_response\":{\"code\":\"10000\",\"msg\":\"Success\",\"out_trade_no\":\"CST20266\",\"trade_status\":\"TRADE_SUCCESS\",\"trade_status_description\":\"交易成功\",\"total_amount\":\"3.65\",\"account_date\":\"20180919\",\"trade_no\":\"102180919894544092\",\"fee\":\"1.00\",\"partner_fee\":\"0.00\",\"payee_fee\":\"0.00\",\"payer_fee\":\"1.00\"}}";
+		String retStr = "{\"sign\":\"CMxlvSKI0hRgZqiZgKIe\",\"ysepay_df_single_query_response\":{\"code\":\"10000\",\"msg\":\"Success\",\"out_trade_no\":\"CST20266\",\"trade_status\":\"TRADE_SUCCESS\",\"trade_status_description\":\"交易成功\",\"total_amount\":\"3.65\",\"account_date\":\"20180919\",\"trade_no\":\"102180919894544092\",\"fee\":\"1.00\",\"partner_fee\":\"0.00\",\"payee_fee\":\"0.00\",\"payer_fee\":\"1.00\"}}";
 		/**
 		 * 方式一：json-lib
 		 */
 		//import net.sf.json.JSONObject;
 //		JSONObject retStrJson = JSONObject.fromObject(retStr);
 //		String checkData = retStrJson.optString("ysepay_df_single_query_response");
-//		System.out.println(checkData);//{"code":"10000","msg":"Success","out_trade_no":"CST20266","trade_status":"TRADE_SUCCESS","trade_status_description":"交易成功","total_amount":"3.65","account_date":"20180919","trade_no":"102180919894544092","fee":"1.00","partner_fee":"0.00","payee_fee":"0.00","payer_fee":"1.00"}
+//		System.out.println(checkData);
 		
 		/**
 		 * 方式二：fastjson
@@ -154,6 +155,6 @@ public class FastjsonTest {
 		//import com.alibaba.fastjson.JSONObject;
 		Map<String, String> map = JSON.parseObject(retStr, new TypeReference<Map<String, String>>(){});
 		String string = map.get("ysepay_df_single_query_response");
-		System.out.println(string);//{"fee":"1.00","total_amount":"3.65","trade_no":"102180919894544092","payer_fee":"1.00","account_date":"20180919","payee_fee":"0.00","code":"10000","trade_status_description":"交易成功","out_trade_no":"CST20266","partner_fee":"0.00","msg":"Success","trade_status":"TRADE_SUCCESS"}
+		System.out.println(string);
 	}
 }
